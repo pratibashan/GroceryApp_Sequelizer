@@ -1,0 +1,86 @@
+
+
+/* #container {
+    background: #000046;  /* fallback for old browsers */
+   /* background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 
+    background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
+
+}*/
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #000046;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+/* Style the top navigation bar */
+#topnav {
+    height:75px;
+    overflow: hidden;
+    background-color:#000046;
+}
+
+#btnLink {
+    float: left;
+    margin-left: 100px;
+    margin: 20px;
+    background:none;
+    color:white;
+     border:none; 
+     padding:0;
+     font-size: 18px;
+     /* font-weight: bold; */
+     border-bottom:1px solid #444; 
+     cursor: pointer;
+}
+
+#shopDiv{
+    margin: auto;
+    /* width: 70%; */
+    /* border: 3px solid blue; */
+    padding: 10px;
+    text-align: center;
+    color:white;
+}
+
+#shoppingTable{
+    background-color: white;
+
+}
+#btnSubmit {
+        background-color:rgb(22, 142, 175);
+        /* border: none; */
+        color:white; 
+        /* padding: 15px 25px; */
+        /* text-align: center; */
+        /* text-decoration: none; */
+        /* display: inline-block; */
+        /* margin: 4px 2px; */
+        /* cursor: pointer; */
+        /* font-size: 15px; */
+} 
+/* Style the topnav links */
+/* .topnav btnSubmit {
+    margin-top: 20px;
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+} */
+
+/* Change color on hover */
+/* btnSubmit:hover {
+    background-color: #ddd;
+    color: black;
+}  */
+
