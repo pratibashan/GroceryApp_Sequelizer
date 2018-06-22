@@ -24,10 +24,6 @@ app.get('/index',function(req,res){
     res.render('index')
 })
 
-
-
-
-
 app.post('/addshoppinglists',function(req,res){
 
     let shopName = req.body.shopName
@@ -47,34 +43,103 @@ app.post('/addshoppinglists',function(req,res){
     // save the shoplist in the database
 
     shoplist.save().then(function(savedShopList){
-        console.log(savedShopList)
+        //console.log(savedShopList)
     }) 
 
       res.redirect('shoppingLists')
 
+})
 
- })
-
-app.get('/shoppingLists',function(req,res){
+app.get('/shoppinglists',function(req,res){
 
     models.shoppinglists.findAll().then(function(shoplists){
 
         res.render('shoppingLists',{shoplists:shoplists})
 
-        console.log(shoplists)
+        //console.log(shoplists)
+    })  
+})
+  
 
-    })
+// shoppinglists/4
+app.get('/shoppinglists/:id',function(req,res){
+
+    let shopId = parseInt(req.params.id)
+    //console.log(shopId)
     
-  })
-  app.post('/deleteshop',function(req,res){
-        let shopId =   parseInt(req.body.shopId)
-      models.shoppinglists.destroy({
-        where: {
-            id : shopId
-          }
-         }) .then(function(shoplist){
 
-          res.redirect('shoppingLists')
-        })
-  })
+    models.shoppinglists.findOne({
+        where : {
+          id : shopId
+        },
+          include :[
+            {
+              model : models.GroceryItem,
+              as : 'groceryitems'
+            }
+          ]
+      }).then(function(shoppinglist){
+      
+        // console.log(shoppinglist.groceryitems)
+
+        res.render('groceryItems',{shoppingListId:shopId,groceryItemsList:shoppinglist.groceryitems})
+
+      })    
+})
+
+app.post('/addgroceryitems',function(req,res){
+
+    let groceryItemName = req.body.groceryItemName
+    let quantity = parseInt(req.body.quantity)
+    let price = parseFloat(req.body.price)
+    let shoppingListId = parseInt(req.body.shoppingListId)
+
+    // console.log(groceryItemName)
+    // console.log(quantity)
+    // console.log(price)
+    // console.log(shoppingListId)
+
+    let groceryItem = models.GroceryItem.build({
+        name : groceryItemName,
+        quantity : quantity,
+        price   : price,
+        shopid:shoppingListId
+        }) 
+
+    // save the shoplist in the database
+
+    groceryItem.save().then(function(savedGroceryItem){
+       // console.log(savedGroceryItem)
+       res.redirect(`/shoppinglists/${shoppingListId}`)
+
+    }) 
+
+})  
+
+app.post('/deletegroceryitem',function(req,res){
+
+        let groceryItemId =   parseInt(req.body.groceryItemId)
+        let shopId =   parseInt(req.body.shopId)
+        console.log(shopId)
+        console.log(groceryItemId)
+
+        models.GroceryItem.destroy({
+            where : {
+              id : groceryItemId
+            }
+          }).then(function(deletedgroceryitem){
+                console.log(deletedgroceryitem)
+                res.redirect(`/shoppinglists/${shopId}`)
+        })        
+       
+   })
+
+// app.get('/groceryitems',function(req,res){
+
+//     res.render('groceryItems',{groceryItemsList:groceryItemsList})    
+   
+// })     
+    
 app.listen(3000, () => console.log('app listening on port 3000!'))
+
+

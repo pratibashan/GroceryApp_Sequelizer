@@ -3,13 +3,18 @@
 <html>
 <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="styles.css">
+
+        
 </head>
+
 <body id="wrapper">
     
         <div class="row" >
@@ -20,51 +25,64 @@
 
             </div>
         </div>
+        
+            <div class="container">
+                <div class = "col-xs-12" id="shopDiv">
+                    <h4>Add New Shopping List</h4><br/>
+
+                        <form class="form-inline" action ="/addshoppinglists" method="post">
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="shopName" class="sr-only">Shop Name</label>
+                                <input type="text" class="form-control" name="shopName" id="shopName" placeholder="Shop Name">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="street" class="sr-only">Street</label>
+                                <input type="text" class="form-control" id="street" name="street" placeholder="Street">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="city" class="sr-only">City</label>
+                                <input type="text" class="form-control" id="city" name="city"  placeholder="City">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="state" class="sr-only">State</label>
+                                <input type="text" class="form-control" id="state" name="state"  placeholder="State"> 
+                                 
+                            </div><br>
+                            <button type ="submit" class="btn btn-primary mb-2" id = "btnSubmit">Add Shop</button>
+
+
+                           
+                            
+                        </form>
+                </div>
+                </div>
+
         <br/><br/><br/>
-    <div class="container">
-        <div class="row" class="container-fluid" >
-            <div class = "col-xs-12" id="shopDiv">
-                <h4>Add New Shopping List</h4><br/>
-
-                <form class="form-group" action="/addshoppinglists" method="post">
-
-                    
-
-                    <div class="form-group"><label>Shop Name:</label><input type="text" name="shopName" class="form-control"/></div> 
-                    <div class="form-group"><label>Street:</label><input type="text" name="street" class="form-control"/></div>
-                   <div class="form-group"> <label>City:</label><input type="text" name="city" class="form-control"/></div>
-                    <div class="form-group"><label>State:</label><input type="text" name="state" class="form-control"/></div>
-                    <div class="form-group"><input type="submit" name="btnshopName" class = "btn btn-primary"id="btnSubmit" value="Add"></div>
-
-                </form>
+        <div class="row" >
+      
             </div>
-        </div>
-        <br/><br/><br/>
+            <hr>
+        <br/><br/>
+        
         <div class="row" >
 
                  <div class="col-xs-12" id="shopDiv" >
                     <h4>View  Shopping List</h4><br/>
                     <table class="table table-bordered table-hover" id="shoppingTable">
-                        <th>No.</th>
+                        
                         <th>Shop Name</th>
                         <th>Street</th>
                         <th>City</th>
                         <th>State</th>
-                         <th>Delete Shops</th>
+                         <th>Grocery Items</th>
                         {{#shoplists}}
                         <tr>
-                            <td>{{id}}</td>
+                            
                             <td>{{name}}</td>
                             <td>{{street}}</td>
                             <td>{{city}}</td>
                             <td>{{state}}</td>
-                            <td>
-                                    <form action='/deleteshop' method='post'>
-                                    <input type="hidden" name="shopId" value='{{id}}' />
-                                    <input type="submit" value="Delete Shop" class ="btn btn-primary"id="btnSubmit"/>
-                                    </form>
-                            </td>
-
+                            <td><a href="/shoppinglists/{{id}}"><button  type="submit" class="btn btn-primary mb-2" id="btnSubmit">Add Grocery Item</button></a></td>
                         </tr>
                         {{/shoplists}}
 
@@ -75,3 +93,8 @@
 
 </body>
 </html>
+
+
+
+
+

@@ -1,0 +1,86 @@
+
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        </link>
+        <link rel="stylesheet" type="text/css" href="/styles.css"></link>
+
+        
+        
+</head>
+<body id="wrapper">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class= "col " id="topnav">
+                <a href="/shoppingLists"><button id = "btnLink">Shopping Lists</button></a>
+                {{! <a href="/groceryItems"><button id = "btnLink">Grocery Items</button></a> }}
+
+            </div>
+        </div>
+        <br/><br/><br/>
+            <div class="row" >
+                <div class = "col-xs-12" id="shopDiv">
+                    <h4>Add Grocery Items</h4><br/>
+
+                        <form class="form-inline" action ="/addgroceryitems" method="post">
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="groceryItemName" class="sr-only">Grocery Name</label>
+                                <input type="text" class="form-control" name="groceryItemName" id="groceryItemName" placeholder="Grocery Name">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="quantity" class="sr-only">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity">
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="price" class="sr-only">Price</label>
+                                <input type="number" class="form-control" id="price" name="price" step="0.01" min="-9999999999.99" max="9999999999.99" placeholder="Price">
+                            </div>
+                             <input type="hidden" name="shoppingListId" value="{{shoppingListId}}" />
+
+                            <button type ="submit" class="btn btn-primary mb-2" id = "btnSubmit">Add Grocery Item</button>
+                            
+                        </form>
+                </div>
+            </div>
+            <br/><br/><br/>
+        <div class="row" >
+
+                 <div class="col-xs-12" id="shopDiv" >
+                    <h4>View Grocery Items</h4><br/>
+                    <table class="table table-bordered table-hover" id="shoppingTable">
+                        
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Delete Items</th>
+                        {{#groceryItemsList}}
+                        <tr>
+                            
+                            <td>{{name}}</td>
+                            <td>{{quantity}}</td>
+                            <td>{{price}}</td>
+                            
+                            {{! <a href="/deletegroceryitem"><button  type="submit" class="btn btn-primary mb-2" id="btnSubmit">Delete Grocery Item</button></a></td> }}
+
+                            <td>
+                            <form action='/deletegroceryitem' method='post'>
+                                    <input type="hidden" name="shopId" value='{{shoppingListId}}' />
+                                    <input type="hidden" name="groceryItemId" value='{{id}}' />
+                                    <input type="submit" value="Delete Grocery Item" class ="btn btn-primary mb-2"id="btnSubmit"/>
+                                    </form></td>
+                        </tr>
+                        {{/groceryItemsList}}
+
+                    </table>
+                </div>
+            </div>
+       </div>
+    </body>
+</html>
+
+                                    
